@@ -6,6 +6,6 @@ import cucumber.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @Cucumber.Options(features = "classpath:personalGrowth.feature")
-public class PersonalGrowth2IT {
+public class PersonalGrowth1Test {
 
 }
