@@ -27,6 +27,5 @@ public class PersonalGrowthSteps {
 	public void thePersonWillBe(double expectedHeight) {
 		System.out.println("then");
 		assertEquals(person.getHeight(), expectedHeight, 0.0);
-
 	}
 }

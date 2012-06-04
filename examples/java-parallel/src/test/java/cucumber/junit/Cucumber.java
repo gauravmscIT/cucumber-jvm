@@ -37,6 +37,7 @@ public class Cucumber extends ParentRunner<FeatureRunner> {
 	private final JUnitReporter jUnitReporter;
 	private final List<FeatureRunner> children = new ArrayList<FeatureRunner>();
 	private final Runtime runtime;
+	private final Class clazz;
 
 	/**
 	 * Constructor called by JUnit.
@@ -46,6 +47,7 @@ public class Cucumber extends ParentRunner<FeatureRunner> {
 	 */
 	public Cucumber(Class clazz) throws InitializationError, IOException {
 		super(clazz);
+		this.clazz = clazz;
 		ClassLoader classLoader = clazz.getClassLoader();
 		assertNoCucumberAnnotatedMethods(clazz);
 
@@ -67,13 +69,15 @@ public class Cucumber extends ParentRunner<FeatureRunner> {
 
 	@Override
 	protected Description describeChild(FeatureRunner child) {
-		return child.getDescription();
+		Description returnValue = child.getDescription();
+		returnValue.setClazz(clazz.getCanonicalName());
+		return returnValue;
 	}
 
-	@Override
-	protected Description describeChild(String clazz, FeatureRunner child) {
-		return ((FeatureRunner) child).getDescription(clazz);
-	}
+	// @Override
+	// protected Description describeChild(String clazz, FeatureRunner child) {
+	// return ((FeatureRunner) child).getDescription(clazz);
+	// }
 
 	@Override
 	protected void runChild(FeatureRunner child, RunNotifier notifier) {

@@ -248,5 +248,8 @@ public class Description implements Serializable {
 
 	public void setClazz(String clazz) {
 		this.clazz = clazz;
+		for (Description childDesc : this.fChildren) {
+			childDesc.setClazz(clazz);
+		}
 	}
 }
