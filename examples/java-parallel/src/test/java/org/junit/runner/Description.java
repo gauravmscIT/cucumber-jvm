@@ -215,6 +215,9 @@ public class Description implements Serializable {
 		}
 	}
 
+	/*
+	 * Get the set class name if there is one, otherwise figure it out the ususal way.
+	 */
 	/**
 	 * @return If this describes a method invocation, the name of the class of the test instance
 	 */
@@ -246,6 +249,9 @@ public class Description implements Serializable {
 		return Pattern.compile("(.*)\\((.*)\\)").matcher(toString());
 	}
 
+	/*
+	 * Recursively set a class name for the description.
+	 */
 	public void setClazz(String clazz) {
 		this.clazz = clazz;
 		for (Description childDesc : this.fChildren) {
